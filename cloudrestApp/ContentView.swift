@@ -11,17 +11,19 @@ struct ContentView: View {
     var body: some View {
         
         ZStack {
-            Color(red: 0.133, green: 0.133, blue: 0.231)
+            Color("Background")
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 20.0) {
                 Text(Date(), style: .date)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("Icons"))
+    
                 Text("here is a recap of your month so far")
-                    .foregroundColor(.yellow)
-                    .font(.subheadline)
+                    .foregroundColor(Color("Headings"))
+                    .font(.title3)
+                    .fontWeight(.bold)
                 
                 
                 HStack {
@@ -33,7 +35,9 @@ struct ContentView: View {
                             .foregroundColor(.white)
                     }
                     Text("your average amount of sleep")
+                        .font(.headline)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
                 }
                 
                 HStack {
@@ -45,7 +49,9 @@ struct ContentView: View {
                             .foregroundColor(.white)
                     }
                     Text("your longest rest so far")
+                        .font(.headline)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
                 }
                 
                 HStack {
@@ -57,33 +63,48 @@ struct ContentView: View {
                             .foregroundColor(.white)
                     }
                     Text("your average sleep quality")
+                        .font(.headline)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
                 }
-                
-                Text("activities that improve your sleep")
-                Button("listening to music") {
-                    
+                HStack {
+                    VStack(alignment: .center, spacing: 10.0) {
+                        Text("activities that improve your sleep")
+                            .foregroundColor(Color("Headings"))
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        
+                        Button("listening to music") {
+                            
+                        }
+                        .foregroundColor(Color("Background"))
+                        .font(.callout)
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        .tint(Color("Buttons"))
+                        
+                        Button("exercising") {
+                            
+                        }
+                        .foregroundColor(Color("Background"))
+                        .font(.callout)
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        .tint(Color("Buttons"))
+                        
+                        Text("habit to improve on")
+                            .foregroundColor(Color("Headings"))
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        
+                        Button("screentime before bed") {
+                            
+                        }
+                        .foregroundColor(Color("Background"))
+                        .font(.callout)
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        .tint(Color("Buttons"))
+                    }
                 }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Button("exercising") {
-                    
-                }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Text("habit to improve on")
-                Button("screentime before bed") {
-                    
-                }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Spacer()
+                .frame(maxWidth: .infinity)
             }
             .padding()
         }
