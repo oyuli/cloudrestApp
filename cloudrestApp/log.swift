@@ -7,60 +7,70 @@
 
 import SwiftUI
 
-struct log: View {
+// enum for tabs
+enum Tab {
+    case home, cloud, log, music, breathe
+}
+
+// main view
+struct AppView: View {
+    @State private var selectedTab: Tab = .log
+    
     var body: some View {
-            NavigationStack {
-                VStack {
-                    Text("log")
+        ZStack {
+            Color(red: 0.133, green: 0.133, blue: 0.231)
+                .ignoresSafeArea()
+            
+            VStack {
+                // show for selected page
+                switch selectedTab {
+                    case .home: ContentView()
+                    case .cloud: cloud()
+                    case .log: log()
+                    case .music: music()
+                    case .breathe: breathe()
                 }
-                // navigation toolbar
-                .toolbar {
-                    ToolbarItemGroup(placement: .status) {
-                        // go to home
-                        NavigationLink {
-                            ContentView()
-                        } label: {
-                            Image(systemName: "house")
-                        }
-                        .buttonStyle(IconNavigationLinkStyle())
-                        // go to cloud
-                        NavigationLink {
-                            cloud()
-                        } label: {
-                            Image(systemName: "cloud")
-                        }
-                        // go to log
-                        NavigationLink {
-                            log()
-                        } label: {
-                            Image(systemName: "plus.circle")
-                        }
-                        // go to music
-                        NavigationLink {
-                            music()
-                        } label: {
-                            Image(systemName: "music.note.list")
-                        }
-                        // go to breathe
-                        NavigationLink {
-                            breathe()
-                        } label: {
-                            Image(systemName: "wind")
-                        }
-                    }
+                Spacer()
+                // bar with icons
+                HStack {
+                    TabButton(tab: .home, icon: "house", selectedTab: $selectedTab)
+                    TabButton(tab: .cloud, icon: "cloud", selectedTab: $selectedTab)
+                    TabButton(tab: .log, icon: "plus.circle", selectedTab: $selectedTab)
+                    TabButton(tab: .music, icon: "music.note.list", selectedTab: $selectedTab)
+                    TabButton(tab: .breathe, icon: "wind", selectedTab: $selectedTab)
                 }
             }
+        }
     }
 }
 
-struct IconNavigationLinkStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(configuration.isPressed ? .accentColor : Color(red: 195, green: 199, blue: 221))
-            .contentShape(Rectangle())
+// tab button view
+struct TabButton: View {
+    let tab: Tab
+    let icon: String
+    @Binding var selectedTab: Tab
+    
+    var body: some View {
+        Button {
+            selectedTab = tab
+        } label: {
+            Image(systemName: icon)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .foregroundColor(selectedTab == tab ? Color(red: 0.851, green: 0.765, blue: 0.416) : Color(red: 0.765, green: 0.780, blue: 0.867))
+                .padding()
+        }
+    }
+}
+
+// log view
+struct log: View {
+    var body: some View {
+        Text("log")
     }
 }
 
 #Preview {
-    log()
+    AppView()
 }
