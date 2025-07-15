@@ -30,42 +30,51 @@ struct ContentView: View {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
+                            .foregroundColor(Color("SmallBackground"))
                         Text("number")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Headings"))
                     }
                     Text("your average amount of sleep")
                         .font(.headline)
+                        .fontWeight(.heavy)
                         .padding(.leading, 15)
                         .foregroundColor(Color("Buttons"))
+                        .kerning(1.25)
                 }
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
+                            .foregroundColor(Color("SmallBackground"))
                         Text("number")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Headings"))
                     }
-                    Text("your longest rest so far")
+                    Text("your longest        rest so far")
                         .font(.headline)
+                        .fontWeight(.heavy)
                         .padding(.leading, 15)
                         .foregroundColor(Color("Buttons"))
+                        .kerning(1.25)
                 }
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
-                        Text("number")
+                            .foregroundColor(Color("SmallBackground"))
+                        Text("icon")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Headings"))
                     }
                     Text("your average sleep quality")
                         .font(.headline)
+                        .fontWeight(.heavy)
                         .padding(.leading, 15)
                         .foregroundColor(Color("Buttons"))
+                        .kerning(1.25)
                 }
                 HStack {
                     VStack(alignment: .center, spacing: 10.0) {
@@ -73,38 +82,53 @@ struct ContentView: View {
                             .foregroundColor(Color("Headings"))
                             .font(.title3)
                             .fontWeight(.bold)
+                            .padding(.top, 1)
+                            .kerning(1.5)
                         
-                        Button("listening to music") {
-                            
+                        ZStack {
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text("Listening to music")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("Background"))
+                                .kerning(1.12)
                         }
-                        .foregroundColor(Color("Background"))
-                        .font(.callout)
-                        .buttonStyle(BorderedProminentButtonStyle())
-                        .tint(Color("Buttons"))
                         
-                        Button("exercising") {
-                            
+                        ZStack {
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text("Exercising")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("Background"))
+                                .kerning(1.12)
                         }
-                        .foregroundColor(Color("Background"))
-                        .font(.callout)
-                        .buttonStyle(BorderedProminentButtonStyle())
-                        .tint(Color("Buttons"))
+                        
+                        
                         
                         Text("habit to improve on")
                             .foregroundColor(Color("Headings"))
                             .font(.title3)
                             .fontWeight(.bold)
+                            .padding(.top, 15)
+                            .kerning(1.5)
                         
-                        Button("screentime before bed") {
-                            
+                        ZStack {
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text("Screentime before bed")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("Background"))
+                                .kerning(1.12)
                         }
-                        .foregroundColor(Color("Background"))
-                        .font(.callout)
-                        .buttonStyle(BorderedProminentButtonStyle())
-                        .tint(Color("Buttons"))
                     }
                 }
-                .frame(maxWidth: .infinity)
+                //.frame(maxWidth: .infinity)
             }
             .padding()
         }
