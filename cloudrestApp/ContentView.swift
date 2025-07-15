@@ -11,14 +11,14 @@ struct ContentView: View {
     var body: some View {
         
         ZStack {
-            Color.purple
+            Color(red: 0.133, green: 0.133, blue: 0.231)
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 20) {
                 Text(Date(), style: .date)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.white)
                 Text("here is a recap of your month so far")
                     .foregroundColor(.yellow)
                     .font(.subheadline)
