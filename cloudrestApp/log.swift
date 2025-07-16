@@ -91,6 +91,8 @@ struct CustomDatePicker: View {
                 } label: {
                     Image(systemName: "chevron.left")
                         .foregroundStyle(Color(red: 0.851, green: 0.765, blue: 0.416))
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
@@ -138,6 +140,8 @@ struct CustomDatePicker: View {
                 } label: {
                     Image(systemName: "chevron.right")
                         .foregroundStyle(Color(red: 0.851, green: 0.765, blue: 0.416))
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
                 }
             }
         }
