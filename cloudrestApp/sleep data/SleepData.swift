@@ -8,7 +8,7 @@
 import Foundation
 
 struct SleepEntry: Identifiable, Codable {
-    let id = UUID()
+    var id: UUID = UUID()
     let date: Date
     let sleepStart: Date
     let sleepEnd: Date

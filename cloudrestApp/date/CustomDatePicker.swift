@@ -8,7 +8,7 @@
 import SwiftUI
 
 // date picker
-struct DatePicker: View {
+struct CustomDatePicker: View {
     // variable to keep track of what date a user clicks on
     @Binding var selectedDate: Date
     
