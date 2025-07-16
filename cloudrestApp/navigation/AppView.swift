@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppView: View {
     @StateObject private var tabController = TabController()
+    @StateObject private var sleepData = SleepDataStore()
     
     var body: some View {
         ZStack {
@@ -35,6 +36,7 @@ struct AppView: View {
             }
         }
         .environmentObject(tabController)
+        .environmentObject(sleepData)
     }
 }
 
