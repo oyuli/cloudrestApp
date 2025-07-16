@@ -12,6 +12,7 @@ struct breathe: View {
     @State private var imageOffset: CGFloat = 0 //image initial position
     @State private var timer: DispatchSourceTimer? //timer for animation
     @State private var isAnimating = false
+    @State private var buttonText: String = "Breathe in"
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct breathe: View {
                     .padding(.bottom, 5.0)
                     .offset(y: imageOffset)
                 
-                Button("Start") {
+                Button(buttonText) {
                     startAnimation()
                 }
                 .foregroundColor(Color("Headings"))
@@ -42,18 +43,31 @@ struct breathe: View {
     
     func startAnimation() {
         
+        buttonText = "Breathe in"
+        
         let queue = DispatchQueue(label: "com.example.timerQueue")
         let timer = DispatchSource.makeTimerSource(queue: queue)
         
         //move image up
         withAnimation(.easeInOut(duration: 3)) {
-            imageOffset = -400
+            imageOffset = -350
         }
         
         //timer set up
         timer.setEventHandler {
+            
+            //Change text
+            DispatchQueue.main.async {
+                buttonText = "Hold"
+            }
+            
             //image hold 2 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                
+                DispatchQueue.main.async {
+                    buttonText = "Breathe out"
+                }
+                
                 withAnimation(.easeInOut(duration: 4)) {
                     imageOffset = 0
                 }
@@ -75,5 +89,5 @@ struct breathe: View {
 }
 
 #Preview {
-    breathe()
+    AppView()
 }
