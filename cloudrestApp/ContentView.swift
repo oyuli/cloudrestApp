@@ -11,88 +11,132 @@ struct ContentView: View {
     var body: some View {
         
         ZStack {
-            // Use the preferred background color from 'main'
-            Color(red: 0.133, green: 0.133, blue: 0.231)
+            Color("Background")
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 20.0) {
                 Text(Date(), style: .date)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.white) // 'main' branch kept it clean and visible
-
+                    .foregroundColor(Color("Icons"))
+    
                 Text("here is a recap of your month so far")
-                    .foregroundColor(.yellow)
-                    .font(.subheadline)
+                    .foregroundColor(Color("Headings"))
+                    .font(.title3)
+                    .fontWeight(.bold)
+                
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
+                            .foregroundColor(Color("SmallBackground"))
                         Text("number")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Headings"))
                     }
                     Text("your average amount of sleep")
+                        .font(.headline)
+                        .fontWeight(.heavy)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
+                        .kerning(1.25)
                 }
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
+                            .foregroundColor(Color("SmallBackground"))
                         Text("number")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Headings"))
                     }
-                    Text("your longest rest so far")
+                    Text("your longest        rest so far")
+                        .font(.headline)
+                        .fontWeight(.heavy)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
+                        .kerning(1.25)
                 }
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
-                        Text("number")
+                            .foregroundColor(Color("SmallBackground"))
+                        Text("icon")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Headings"))
                     }
                     Text("your average sleep quality")
+                        .font(.headline)
+                        .fontWeight(.heavy)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
+                        .kerning(1.25)
                 }
-                
-                Text("activities that improve your sleep")
-                
-                Button("listening to music") {
-                    // Add action here
+                HStack {
+                    VStack(alignment: .center, spacing: 10.0) {
+                        Text("activities that improved your sleep")
+                            .foregroundColor(Color("Headings"))
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.top, 1)
+                            .kerning(1.16)
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text("Listening to music")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("Background"))
+                                .kerning(1.12)
+                        }
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text("Exercising")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("Background"))
+                                .kerning(1.12)
+                        }
+                        
+                        
+                        
+                        Text("habit to improve on")
+                            .foregroundColor(Color("Headings"))
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.top, 15)
+                            .kerning(1.5)
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text("Screentime before bed")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("Background"))
+                                .kerning(1.12)
+                        }
+                    }
                 }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Button("exercising") {
-                    // Add action here
-                }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Text("habit to improve on")
-                
-                Button("screentime before bed") {
-                    // Add action here
-                }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Spacer()
+                //.frame(maxWidth: .infinity)
             }
             .padding()
         }
+        
         .toolbar {
-            // You can add toolbar items here
+            
         }
+        
     }
 }
 
