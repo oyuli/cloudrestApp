@@ -12,7 +12,8 @@ struct breathe: View {
     @State private var imageOffset: CGFloat = 0 //image initial position
     @State private var timer: DispatchSourceTimer? //timer for animation
     @State private var isAnimating = false
-    @State private var buttonText: String = "Breathe in"
+    @State private var buttonText: String = "Start"
+    @State private var currentImage: String = "SheepClosed"
     
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct breathe: View {
             VStack {
                 Spacer()
                 
-                Image("SheepClosed")
+                Image(currentImage)
                     .resizable(resizingMode: .stretch)
                     .aspectRatio(contentMode: .fit)
                     .padding([.top, .leading, .trailing], 30)
@@ -37,7 +38,10 @@ struct breathe: View {
                 .fontWeight(.bold)
                 .padding(.bottom, 30.0)
                 .kerning(2)
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.5), value: buttonText)
             }
+            
         }
     }
     
@@ -45,12 +49,12 @@ struct breathe: View {
         
         buttonText = "Breathe in"
         
-        let queue = DispatchQueue(label: "com.example.timerQueue")
+        let queue = DispatchQueue(label: "timerQueue")
         let timer = DispatchSource.makeTimerSource(queue: queue)
         
         //move image up
         withAnimation(.easeInOut(duration: 3)) {
-            imageOffset = -350
+            imageOffset = -340
         }
         
         //timer set up
@@ -64,11 +68,13 @@ struct breathe: View {
             //image hold 2 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 
+                
                 DispatchQueue.main.async {
                     buttonText = "Breathe out"
+                    currentImage = "SheepOpen"
                 }
                 
-                withAnimation(.easeInOut(duration: 4)) {
+                withAnimation(.easeInOut(duration: 3)) {
                     imageOffset = 0
                 }
             }
@@ -81,6 +87,11 @@ struct breathe: View {
         //activating timer
         self.timer = timer
         timer.activate()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
+            buttonText = "Start"
+            currentImage = "SheepClosed"
+        }
         
     }
     
