@@ -18,7 +18,6 @@ class SleepDataStore: ObservableObject {
             entries.append(entry)
         }
     }
-    
     func entries(for month: Date) -> [SleepEntry] {
         entries.filter {
             Calendar.current.isDate($0.date, equalTo: month, toGranularity: .month)
