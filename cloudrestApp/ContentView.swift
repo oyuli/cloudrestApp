@@ -78,12 +78,12 @@ struct ContentView: View {
                 }
                 HStack {
                     VStack(alignment: .center, spacing: 10.0) {
-                        Text("activities that improve your sleep")
+                        Text("activities that improved your sleep")
                             .foregroundColor(Color("Headings"))
                             .font(.title3)
                             .fontWeight(.bold)
                             .padding(.top, 1)
-                            .kerning(1.5)
+                            .kerning(1.16)
                         
                         ZStack {
                             RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
