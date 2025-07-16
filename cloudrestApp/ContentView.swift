@@ -133,13 +133,9 @@ struct ContentView: View {
             .padding()
         }
         
-        .toolbar {
-            
-        }
-        
     }
 }
 
 #Preview {
-    ContentView()
+    AppView()
 }
