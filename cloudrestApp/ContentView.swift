@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         
         ZStack {
+            // Use the preferred background color from 'main'
             Color(red: 0.133, green: 0.133, blue: 0.231)
                 .ignoresSafeArea()
             
@@ -18,11 +19,11 @@ struct ContentView: View {
                 Text(Date(), style: .date)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.white) // 'main' branch kept it clean and visible
+
                 Text("here is a recap of your month so far")
                     .foregroundColor(.yellow)
                     .font(.subheadline)
-                
                 
                 HStack {
                     ZStack {
@@ -61,23 +62,25 @@ struct ContentView: View {
                 }
                 
                 Text("activities that improve your sleep")
+                
                 Button("listening to music") {
-                    
+                    // Add action here
                 }
                 .font(.title2)
                 .buttonStyle(BorderedProminentButtonStyle())
                 .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
                 
                 Button("exercising") {
-                    
+                    // Add action here
                 }
                 .font(.title2)
                 .buttonStyle(BorderedProminentButtonStyle())
                 .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
                 
                 Text("habit to improve on")
+                
                 Button("screentime before bed") {
-                    
+                    // Add action here
                 }
                 .font(.title2)
                 .buttonStyle(BorderedProminentButtonStyle())
@@ -87,11 +90,9 @@ struct ContentView: View {
             }
             .padding()
         }
-        
         .toolbar {
-            
+            // You can add toolbar items here
         }
-        
     }
 }
 
