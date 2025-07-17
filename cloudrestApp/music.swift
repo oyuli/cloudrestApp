@@ -24,16 +24,18 @@ struct music: View {
         VStack(spacing: 20) {
             // Title
             Text("Sleep Music")
-                .font(.system(size: 34, weight: .heavy, design: .rounded))
+                //.font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundColor(.white)
-                .padding(.top)
+                .padding(.top, 45.0)
+                .font(.lexend(fontStyle: .title, fontWeight: .bold))
 
             // Subtitle
             Text("Wind down with calming sounds.\nChoose a vibe and press play.")
-                .font(.system(size: 17, weight: .medium, design: .rounded))
+                //.font(.system(size: 17, weight: .medium, design: .rounded))
                 .foregroundColor(.white.opacity(0.85))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
 
             // Music Option Buttons
             ScrollView(.horizontal, showsIndicators: false) {
@@ -43,12 +45,13 @@ struct music: View {
                             selectedURL = option.url
                         }) {
                             Text(option.title)
-                                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                //.font(.system(size: 15, weight: .semibold, design: .rounded))
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
                                 .background(Color.white.opacity(0.15))
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
+                                .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
                         }
                     }
                 }
