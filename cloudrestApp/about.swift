@@ -28,7 +28,7 @@ struct about: View {
                   .foregroundColor(Color("SmallBackground"))
             Text("73%")
               //.fontWeight(.bold)
-              .foregroundColor(Color("Headings"))
+              .foregroundColor(Color("BrighterYellow"))
               .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
           }
           Text("of adolescents\nare not sufficiently resting")
@@ -48,7 +48,7 @@ struct about: View {
                   .foregroundColor(Color("SmallBackground"))
             Text("33%")
               //.fontWeight(.bold)
-              .foregroundColor(Color("Headings"))
+              .foregroundColor(Color("BrighterYellow"))
               .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
           }
           Text("of adults sleep <7 hrs daily")
@@ -67,7 +67,7 @@ struct about: View {
                   .foregroundColor(Color("SmallBackground"))
             Text("75%")
               //.fontWeight(.bold)
-              .foregroundColor(Color("Headings"))
+              .foregroundColor(Color("BrighterYellow"))
               .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
           }
         
@@ -91,7 +91,7 @@ struct about: View {
               .font(.lexend(fontStyle: .body, fontWeight: .semibold))
               
             Text("our solution")
-              .foregroundColor(Color("Headings"))
+              .foregroundColor(Color("BrighterYellow"))
               //.font(.title3)
               //.fontWeight(.bold)
               .padding(.top, 1)
