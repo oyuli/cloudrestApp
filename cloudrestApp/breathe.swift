@@ -12,7 +12,7 @@ struct breathe: View {
     @State private var imageOffset: CGFloat = 0 //image initial position
     @State private var timer: DispatchSourceTimer? //timer for animation
     @State private var isAnimating = false
-    @State private var buttonText: String = "Start"
+    @State private var buttonText: String = "start"
     @State private var currentImage: String = "SheepClosed"
     
     var body: some View {
@@ -50,7 +50,7 @@ struct breathe: View {
     
     func startAnimation() {
         
-        buttonText = "Breathe in"
+        buttonText = "breathe in"
         
         let queue = DispatchQueue(label: "timerQueue")
         let timer = DispatchSource.makeTimerSource(queue: queue)
@@ -65,7 +65,7 @@ struct breathe: View {
             
             //Change text
             DispatchQueue.main.async {
-                buttonText = "Hold"
+                buttonText = "hold"
             }
             
             //image hold 7 seconds
@@ -73,7 +73,7 @@ struct breathe: View {
                 
                 
                 DispatchQueue.main.async {
-                    buttonText = "Breathe out"
+                    buttonText = "breathe out"
                     currentImage = "SheepOpen"
                 }
                 
@@ -93,7 +93,7 @@ struct breathe: View {
         timer.activate()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
-            buttonText = "Start"
+            buttonText = "start"
             currentImage = "SheepClosed"
         }
         
