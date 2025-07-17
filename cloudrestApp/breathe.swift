@@ -33,13 +33,16 @@ struct breathe: View {
                 Button(buttonText) {
                     startAnimation()
                 }
-                .foregroundColor(Color("Headings"))
-                .font(.title2)
-                .fontWeight(.bold)
+                .foregroundColor(Color("BrighterYellow"))
+                //.font(.title2)
+                //.fontWeight(.bold)
+                .font(.lexend(fontStyle: .title2, fontWeight: .bold))
                 .padding(.bottom, 30.0)
                 .kerning(2)
                 .transition(.opacity)
                 .animation(.easeInOut(duration: 0.5), value: buttonText)
+                
+                
             }
             
         }

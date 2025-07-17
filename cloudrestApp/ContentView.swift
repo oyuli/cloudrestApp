@@ -20,15 +20,16 @@ struct ContentView: View {
             
             VStack(alignment: .leading, spacing: 20.0) {
                 Text(Date(), style: .date)
-                    .font(.title)
-                    .fontWeight(.bold)
+                    //.font(.title)
+                    //.fontWeight(.bold)
                     .foregroundColor(Color("Icons"))
+                    .font(.lexend(fontStyle: .title, fontWeight: .bold))
     
                 Text("here is a recap of your month so far")
-                    .foregroundColor(Color("Headings"))
-                    .font(.title3)
-                    .fontWeight(.bold)
-                
+                    .foregroundColor(Color("BrighterYellow"))
+                    //.font(.title3)
+                    //.fontWeight(.bold)
+                    .font(.lexend(fontStyle: .title3, fontWeight: .semibold))
                 
                 HStack {
                     ZStack {
@@ -36,15 +37,17 @@ struct ContentView: View {
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
                         Text(summary != nil ? String(format: "%.1f h", summary!.averageDuration / 3600) : "— —")
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("Headings"))
+                            //.fontWeight(.bold)
+                            .foregroundColor(Color("BrighterYellow"))
+                            .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                     }
                     Text("your average daily rest")
-                        .font(.headline)
+                        //.font(.headline)
                         .fontWeight(.heavy)
                         .padding(.leading, 15)
                         .foregroundColor(Color("Buttons"))
                         .kerning(1.25)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .heavy))
                 }
                 
                 HStack {
@@ -53,15 +56,17 @@ struct ContentView: View {
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
                         Text(summary != nil ? String(format: "%.1f h", summary!.maxDuration / 3600) : "— —")
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("Headings"))
+                            //.fontWeight(.bold)
+                            .foregroundColor(Color("BrighterYellow"))
+                            .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                     }
                     Text("your longest rest so far")
-                        .font(.headline)
+                        //.font(.headline)
                         .fontWeight(.heavy)
                         .padding(.leading, 15)
                         .foregroundColor(Color("Buttons"))
                         .kerning(1.25)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .heavy))
                 }
                 
                 HStack {
@@ -73,23 +78,25 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(Color("Headings"))
+                            .foregroundColor(Color("BrighterYellow"))
                     }
                     Text("your average sleep quality")
-                        .font(.headline)
-                        .fontWeight(.heavy)
+                        //.font(.headline)
+                        .fontWeight(.bold)
                         .padding(.leading, 15)
                         .foregroundColor(Color("Buttons"))
                         .kerning(1.25)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                 }
                 HStack {
                     VStack(alignment: .center, spacing: 10.0) {
                         Text("activities that improved your sleep")
                             .foregroundColor(Color("Headings"))
-                            .font(.title3)
-                            .fontWeight(.bold)
+                            //.font(.title3)
+                            //.fontWeight(.bold)
                             .padding(.top, 1)
                             .kerning(1.16)
+                            .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                         
                         let positiveActivities = summary?.topPositiveActivities ?? []
                         let paddedActivities = positiveActivities + Array(repeating: "— —", count: max(0, 2 - positiveActivities.count))
@@ -110,10 +117,11 @@ struct ContentView: View {
                         
                         Text("habit to improve on")
                             .foregroundColor(Color("Headings"))
-                            .font(.title3)
-                            .fontWeight(.bold)
+                            //.font(.title3)
+                            //.fontWeight(.bold)
                             .padding(.top, 15)
                             .kerning(1.5)
+                            .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                         
                         ZStack {
                             RoundedRectangle(cornerRadius: 25.0)

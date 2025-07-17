@@ -39,10 +39,10 @@ struct cloud: View {
                         
                         Text("days")
                             //.font(.system(size: 70))
-                            .fontWeight(.bold)
+                            //.fontWeight(.bold)
                             .foregroundColor(Color("BrighterYellow"))
                             .padding(.bottom, 70.0)
-                            .font(.lexend(fontWeight: .bold))
+                            .font(.lexend(fontStyle: .largeTitle, fontWeight: .bold))
                     }
                     
                     Image("SheepWithLegs")

@@ -43,7 +43,7 @@ struct about: View {
 #Preview {
     about()
 }
-joyeta-dev
+
           ScrollView {
               VStack<<#Content: View#>> (alignment: .leading, spacing: 20, content: <#() -> _#>) }
 Text("Cloudiest - Sleep Traker")

@@ -9,14 +9,14 @@ import SwiftUI
 
 extension Font {
     static func lexend(fontStyle: Font.TextStyle = .body, fontWeight: Weight = .regular) -> Font {
-        return Font.custom(CustomFont(weight: fontWeight).rawValue, size: 20)
+        return Font.custom(CustomFont(weight: fontWeight).rawValue, size: fontStyle.size)
     }
 }
 
 extension Font.TextStyle {
     var size: CGFloat {
         switch self {
-        case.largeTitle: return 34
+        case.largeTitle: return 70
         case.title: return 28
         case.title2: return 24
         case.title3: return 20
@@ -36,6 +36,7 @@ enum CustomFont: String {
     case regular = "Lexend-Regular"
     case bold = "Lexend-Bold"
     case medium = "Lexend-Medium"
+    case semiBold = "Lexend-SemiBold"
     
     init(weight: Font.Weight){
         switch weight {

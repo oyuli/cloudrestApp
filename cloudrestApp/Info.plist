@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Lexend-SemiBold.ttf</string>
 		<string>Lexend-Medium.ttf</string>
 		<string>Lexend-Regular.ttf</string>
 		<string>Lexend-Bold.ttf</string>

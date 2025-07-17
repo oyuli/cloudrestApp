@@ -23,16 +23,18 @@ struct music: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("Sleep Music")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
+                //.font(.largeTitle)
+                //.fontWeight(.semibold)
                 .foregroundColor(.white)
                 .padding(.top)
+                .font(.lexend(fontStyle: .title, fontWeight: .semibold))
 
             Text("Wind down with calming sounds. Choose a vibe and press play.")
-                .font(.body)
+                //.font(.body)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
+                .font(.lexend(fontStyle: .body, fontWeight: .semibold))
 
             // Buttons to select music types
             ScrollView(.horizontal, showsIndicators: false) {
@@ -47,6 +49,7 @@ struct music: View {
                                 .background(Color.white.opacity(0.15))
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
+                                .font(.lexend(fontStyle: .body, fontWeight: .regular))
                         }
                     }
                 }
