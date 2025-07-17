@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var store: SleepDataStore
+    
     var body: some View {
+        let today = Date()
+        let summary = store.summarizeSleep(forMonth: today)
         
         ZStack {
             Color("Background")
@@ -31,11 +35,11 @@ struct ContentView: View {
                         Circle()
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
-                        Text("number")
+                        Text(summary != nil ? String(format: "%.1f h", summary!.averageDuration / 3600) : "— —")
                             .fontWeight(.bold)
                             .foregroundColor(Color("Headings"))
                     }
-                    Text("your average amount of sleep")
+                    Text("your average daily rest")
                         .font(.headline)
                         .fontWeight(.heavy)
                         .padding(.leading, 15)
@@ -48,11 +52,11 @@ struct ContentView: View {
                         Circle()
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
-                        Text("number")
+                        Text(summary != nil ? String(format: "%.1f h", summary!.maxDuration / 3600) : "— —")
                             .fontWeight(.bold)
                             .foregroundColor(Color("Headings"))
                     }
-                    Text("your longest        rest so far")
+                    Text("your longest rest so far")
                         .font(.headline)
                         .fontWeight(.heavy)
                         .padding(.leading, 15)
@@ -65,8 +69,10 @@ struct ContentView: View {
                         Circle()
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
-                        Text("icon")
-                            .fontWeight(.bold)
+                        Image(systemName: summary != nil && summary!.averageQuality >= 4 ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
                             .foregroundColor(Color("Headings"))
                     }
                     Text("your average sleep quality")
@@ -85,29 +91,22 @@ struct ContentView: View {
                             .padding(.top, 1)
                             .kerning(1.16)
                         
-                        ZStack {
-                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
-                                .frame(width: 350.0, height: 40.0)
-                                .foregroundColor(Color("Buttons"))
-                            Text("Listening to music")
-                                .font(.callout)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color("Background"))
-                                .kerning(1.12)
+                        let positiveActivities = summary?.topPositiveActivities ?? []
+                        let paddedActivities = positiveActivities + Array(repeating: "— —", count: max(0, 2 - positiveActivities.count))
+                        
+                        ForEach(paddedActivities.prefix(2), id: \.self) {
+                            activity in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 25.0)
+                                    .frame(width: 350.0, height: 40.0)
+                                    .foregroundColor(Color("Buttons"))
+                                Text(activity)
+                                    .font(.callout)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Color("Background"))
+                                    .kerning(1.12)
+                            }
                         }
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
-                                .frame(width: 350.0, height: 40.0)
-                                .foregroundColor(Color("Buttons"))
-                            Text("Exercising")
-                                .font(.callout)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color("Background"))
-                                .kerning(1.12)
-                        }
-                        
-                        
                         
                         Text("habit to improve on")
                             .foregroundColor(Color("Headings"))
@@ -117,10 +116,10 @@ struct ContentView: View {
                             .kerning(1.5)
                         
                         ZStack {
-                            RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Corner Radius@*/25.0/*@END_MENU_TOKEN@*/)
+                            RoundedRectangle(cornerRadius: 25.0)
                                 .frame(width: 350.0, height: 40.0)
                                 .foregroundColor(Color("Buttons"))
-                            Text("Screentime before bed")
+                            Text(summary?.topNegativeActivity ?? "— —")
                                 .font(.callout)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color("Background"))
@@ -128,7 +127,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                //.frame(maxWidth: .infinity)
             }
             .padding()
         }
