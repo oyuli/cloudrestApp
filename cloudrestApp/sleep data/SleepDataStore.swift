@@ -26,7 +26,7 @@ class SleepDataStore: ObservableObject {
     
     // sleep time in seconds
     func sleepDurations(for month: Date) -> [TimeInterval] {
-        entries(for: month).map {$0.sleepEnd.timeIntervalSince($0.sleepStart)}
+        entries(for: month).map { correctedSleepDuration(for: $0) }
     }
     func maxSleepDuration(for month: Date) -> TimeInterval? {
         sleepDurations(for: month).max()
@@ -92,7 +92,7 @@ class SleepDataStore: ObservableObject {
         ]
         
         for entry in monthEntries {
-            let duration = entry.sleepEnd.timeIntervalSince(entry.sleepStart)
+            let duration = correctedSleepDuration(for: entry)
             totalDuration += duration
             maxDuration = max(maxDuration, duration)
             totalQuality += entry.sleepQuality
@@ -147,8 +147,17 @@ class SleepDataStore: ObservableObject {
     }
 }
     
-    extension Date {
-        func startOfMonth() -> Date {
-            Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-        }
+extension Date {
+    func startOfMonth() -> Date {
+        Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
     }
+}
+
+    // fix the negative sleeping times, account for going past 12 am or pm
+private func correctedSleepDuration(for entry: SleepEntry) -> TimeInterval {
+    var end = entry.sleepEnd
+    if end < entry.sleepStart {
+        end = Calendar.current.date(byAdding: .day, value: 1, to: end)!
+    }
+    return end.timeIntervalSince(entry.sleepStart)
+}
