@@ -17,8 +17,7 @@ struct cloud: View {
             
             VStack(alignment: .leading, spacing: 20.0) {
                 Text(Date(), style: .date)
-                    .font(.title)
-                    .fontWeight(.bold)
+                    .font(.lexend(fontStyle: .title, fontWeight: .bold))
                     .foregroundColor(Color("Icons"))
                     //.padding(.top, 30.0)
                     
@@ -29,11 +28,11 @@ struct cloud: View {
                     
                     VStack {
                         Text("\(sleepData.currentStreak())")
-                            .font(.system(size: 115))
-                            .fontWeight(.bold)
                             .foregroundColor(Color("BrighterYellow"))
-                            .padding(.top, 100.0)
-                            .frame(width: 300.0, height: 100.0)
+                            .padding(.top, 50.0)
+                            .padding(.bottom, 10.0)
+                            .font(.lexend(fontStyle: .largeTitle, fontWeight: .bold))
+                            .kerning(3)
                             
                         Spacer()
                         
@@ -43,6 +42,7 @@ struct cloud: View {
                             .foregroundColor(Color("BrighterYellow"))
                             .padding(.bottom, 70.0)
                             .font(.lexend(fontStyle: .largeTitle, fontWeight: .bold))
+                            .kerning(3)
                     }
                     
                     Image("SheepWithLegs")

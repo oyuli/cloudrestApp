@@ -26,7 +26,7 @@ struct CustomDatePicker: View {
                     month -= 1
                 } label: {
                     Image(systemName: "chevron.left")
-                        .foregroundStyle(Color(red: 0.851, green: 0.765, blue: 0.416))
+                        .foregroundColor(Color("BrighterYellow"))
                         .scaledToFit()
                         .frame(width: 24, height: 24)
                 }
@@ -34,9 +34,10 @@ struct CustomDatePicker: View {
                 VStack(alignment: .leading, spacing: 10) {
                     // display shown month and year
                     Text("\(extractMonthYear())")
-                        .font(.title)
-                        .foregroundStyle(Color(red: 0.851, green: 0.765, blue: 0.416))
+                        .foregroundColor(Color("BrighterYellow"))
+                        .font(.lexend(fontStyle: .title, fontWeight: .bold))
                         .padding()
+                        .kerning(0.75)
                     
                     // display days of week
                     HStack(spacing: 0) {
@@ -44,6 +45,7 @@ struct CustomDatePicker: View {
                             Text(daysOfWeek[day])
                                 .frame(maxWidth: .infinity)
                                 .foregroundStyle(Color(red: 0.545, green: 0.584, blue: 0.788))
+                                .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                         }
                     }
                     
@@ -58,6 +60,7 @@ struct CustomDatePicker: View {
                                             
                                         Text("\(value.day)")
                                             .foregroundStyle(isToday(date: value.date) ? Color(red: 0.851, green: 0.765, blue: 0.416) : Color(red: 0.765, green: 0.780, blue: 0.867))
+                                            .font(.lexend(fontStyle: .title3, fontWeight: .bold))
                                     }
                                     .frame(width: 30, height: 30)
                                 }

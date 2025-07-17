@@ -18,11 +18,12 @@ struct log: View {
         VStack {
             CustomDatePicker(selectedDate: $selectedDate)
                 .padding()
-                .font(.lexend(fontStyle: .title2, fontWeight: .regular))
+                .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
+            
             Text(selectedDate.formatted(date: .abbreviated, time: .omitted))
                 .foregroundColor(Color("BrighterYellow"))
                 .padding(.bottom)
-                .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
+                .font(.lexend(fontStyle: .title3, fontWeight: .bold))
             
             Button("log sleep") {
                 showInputSheet = true
@@ -41,3 +42,6 @@ struct log: View {
 #Preview {
     AppView()
 }
+
+// .kerning(0.75)
+// .font(.lexend(fontStyle: .title3, fontWeight: .semibold))
