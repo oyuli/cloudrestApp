@@ -41,7 +41,7 @@ struct ContentView: View {
                         Text(summary != nil ? String(format: "%.1f h", summary!.averageDuration / 3600) : "—")
                             //.fontWeight(.semibold)
                             .foregroundColor(Color("BrighterYellow"))
-                            .font(.lexend(fontStyle: .title, fontWeight: .bold))
+                            .font(.lexend(fontStyle: .title2, fontWeight: .bold))
                             .kerning(0.5)
                     }
                     Text("your average daily rest")
@@ -61,7 +61,7 @@ struct ContentView: View {
                         Text(summary != nil ? String(format: "%.1f h", summary!.maxDuration / 3600) : "—")
                             //.fontWeight(.bold)
                             .foregroundColor(Color("BrighterYellow"))
-                            .font(.lexend(fontStyle: .title, fontWeight: .bold))
+                            .font(.lexend(fontStyle: .title2, fontWeight: .bold))
                             .kerning(0.5)
                     }
                     Text("your longest rest so far")

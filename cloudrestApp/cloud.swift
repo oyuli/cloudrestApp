@@ -16,7 +16,7 @@ struct cloud: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 20.0) {
-                Text(Date(), style: .date)
+                Text("your streak!")
                     .font(.lexend(fontStyle: .title, fontWeight: .bold))
                     .foregroundColor(Color("Icons"))
                     //.padding(.top, 30.0)

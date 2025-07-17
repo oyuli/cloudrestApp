@@ -24,11 +24,13 @@ struct log: View {
                 .foregroundColor(Color("BrighterYellow"))
                 .padding(.bottom)
                 .font(.lexend(fontStyle: .title3, fontWeight: .bold))
+                .kerning(0.5)
             
             Button("log sleep") {
                 showInputSheet = true
             }
-            .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
+            .font(.lexend(fontStyle: .title3, fontWeight: .bold))
+            .kerning(0.5)
             .foregroundColor(Color("Buttons"))
             .sheet(isPresented: $showInputSheet) {
                 SleepInputSheet(date: selectedDate)
