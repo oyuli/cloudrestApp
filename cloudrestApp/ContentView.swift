@@ -8,94 +8,142 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var store: SleepDataStore
+    
     var body: some View {
+        let today = Date()
+        let summary = store.summarizeSleep(forMonth: today)
         
         ZStack {
-            // Use the preferred background color from 'main'
-            Color(red: 0.133, green: 0.133, blue: 0.231)
+            Color("Background")
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 20.0) {
                 Text(Date(), style: .date)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white) // 'main' branch kept it clean and visible
-
+                    //.font(.title)
+                    //.fontWeight(.bold)
+                    .foregroundColor(Color("Icons"))
+                    .kerning(0.75)
+                    .font(.lexend(fontStyle: .title, fontWeight: .bold))
+    
                 Text("here is a recap of your month so far")
-                    .foregroundColor(.yellow)
-                    .font(.subheadline)
+                    .foregroundColor(Color("BrighterYellow"))
+                    //.font(.title3)
+                    //.fontWeight(.bold)
+                    .kerning(0)
+                    .font(.lexend(fontStyle: .title3, fontWeight: .bold))
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
-                        Text("number")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SmallBackground"))
+                        Text(summary != nil ? String(format: "%.1f h", summary!.averageDuration / 3600) : "—")
+                            //.fontWeight(.semibold)
+                            .foregroundColor(Color("BrighterYellow"))
+                            .font(.lexend(fontStyle: .title, fontWeight: .bold))
+                            .kerning(0.5)
                     }
-                    Text("your average amount of sleep")
+                    Text("your average daily rest")
+                        //.font(.headline)
+                        //.fontWeight(.heavy)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
+                        .kerning(0.5)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                 }
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
-                        Text("number")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SmallBackground"))
+                        Text(summary != nil ? String(format: "%.1f h", summary!.maxDuration / 3600) : "—")
+                            //.fontWeight(.bold)
+                            .foregroundColor(Color("BrighterYellow"))
+                            .font(.lexend(fontStyle: .title, fontWeight: .bold))
+                            .kerning(0.5)
                     }
                     Text("your longest rest so far")
+                        //.font(.headline)
+                        //.fontWeight(.heavy)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
+                        .kerning(0.5)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                 }
                 
                 HStack {
                     ZStack {
                         Circle()
                             .frame(width: 150.0)
-                        Text("number")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SmallBackground"))
+                        Image(systemName: summary != nil && summary!.averageQuality >= 4 ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(Color("BrighterYellow"))
                     }
                     Text("your average sleep quality")
+                        //.font(.headline)
+                        //.fontWeight(.bold)
                         .padding(.leading, 15)
+                        .foregroundColor(Color("Buttons"))
+                        .kerning(0.5)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .bold))
                 }
-                
-                Text("activities that improve your sleep")
-                
-                Button("listening to music") {
-                    // Add action here
+                HStack {
+                    VStack(alignment: .center, spacing: 10.0) {
+                        Text("activities that improved your sleep")
+                            .foregroundColor(Color("BrighterYellow"))
+                            //.font(.title3)
+                            //.fontWeight(.bold)
+                            .padding(.top, 1)
+                            .kerning(0.5)
+                            .font(.lexend(fontStyle: .headline, fontWeight: .bold))
+                        
+                        let positiveActivities = summary?.topPositiveActivities ?? []
+                        let paddedActivities = positiveActivities + Array(repeating: "—", count: max(0, 2 - positiveActivities.count))
+                        
+                        ForEach(paddedActivities.prefix(2), id: \.self) {
+                            activity in
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 25.0)
+                                    .frame(width: 350.0, height: 40.0)
+                                    .foregroundColor(Color("Buttons"))
+                                Text(activity)
+                                    .font(.lexend(fontStyle: .headline, fontWeight: .bold))
+                                    .foregroundColor(Color("Background"))
+                                    .kerning(0.5)
+                            }
+                        }
+                        
+                        Text("habit to improve on")
+                            .foregroundColor(Color("BrighterYellow"))
+                            //.font(.title3)
+                            //.fontWeight(.bold)
+                            .padding(.top, 15)
+                            .kerning(0.5)
+                            .font(.lexend(fontStyle: .headline, fontWeight: .bold))
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 25.0)
+                                .frame(width: 350.0, height: 40.0)
+                                .foregroundColor(Color("Buttons"))
+                            Text(summary?.topNegativeActivity ?? "—")
+                                .font(.lexend(fontStyle: .headline, fontWeight: .bold))
+                                .foregroundColor(Color("Background"))
+                                .kerning(0.5)
+                        }
+                    }
                 }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Button("exercising") {
-                    // Add action here
-                }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Text("habit to improve on")
-                
-                Button("screentime before bed") {
-                    // Add action here
-                }
-                .font(.title2)
-                .buttonStyle(BorderedProminentButtonStyle())
-                .tint(Color(hue: 0.702, saturation: 0.516, brightness: 0.953))
-                
-                Spacer()
             }
             .padding()
         }
-        .toolbar {
-            // You can add toolbar items here
-        }
+        
     }
 }
 
 #Preview {
-    ContentView()
+    AppView()
 }

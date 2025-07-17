@@ -10,12 +10,25 @@
 		BD50D6AD2E26A4240001E4A4 /* cloudrestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloudrestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		534E6B112E2959FA003043F8 /* Exceptions for "cloudrestApp" folder in "cloudrestApp" target */ = {
+            isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+            membershipExceptions = (
+                Info.plist,
+            );
+            target = BD50D6AC2E26A4240001E4A4 /* cloudrestApp */;
+        };
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		BD50D6AF2E26A4240001E4A4 /* cloudrestApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = cloudrestApp;
-			sourceTree = "<group>";
-		};
+        BD50D6AF2E26A4240001E4A4 /* cloudrestApp */ = {
+            isa = PBXFileSystemSynchronizedRootGroup;
+            exceptions = (
+				534E6B112E2959FA003043F8 /* Exceptions for "cloudrestApp" folder in "cloudrestApp" target */,
+            );
+            path = cloudrestApp;
+            sourceTree = "<group>";
+        };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +266,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cloudrestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -280,6 +294,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cloudrestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
