@@ -22,6 +22,7 @@ struct AppView: View {
                     case .log: log()
                     case .music: music()
                     case .breathe: breathe()
+                    case .about: about()
                 }
                 Spacer()
                 
@@ -31,6 +32,7 @@ struct AppView: View {
                     TabButton(tab: .log, icon: "plus.circle")
                     TabButton(tab: .music, icon: "music.note.list")
                     TabButton(tab: .breathe, icon: "wind")
+                    TabButton(tab: .about, icon: "star")
                 }
                 
             }

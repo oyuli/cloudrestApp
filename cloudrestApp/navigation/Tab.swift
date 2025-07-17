@@ -8,5 +8,5 @@
 import Foundation
 
 enum Tab {
-    case home, cloud, log, music, breathe
+    case home, cloud, log, music, breathe, about
 }
