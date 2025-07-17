@@ -91,7 +91,7 @@ struct about: View {
               .font(.lexend(fontStyle: .body, fontWeight: .semibold))
               
             Text("our solution")
-              .foregroundColor(Color("BrighterYellow"))
+              .foregroundColor(Color("Headings"))
               //.font(.title3)
               //.fontWeight(.bold)
               .padding(.top, 1)
