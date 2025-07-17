@@ -10,9 +10,22 @@
 		BD50D6AD2E26A4240001E4A4 /* cloudrestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloudrestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BD50D83A2E29614F0001E4A4 /* Exceptions for "cloudrestApp" folder in "cloudrestApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BD50D6AC2E26A4240001E4A4 /* cloudrestApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BD50D6AF2E26A4240001E4A4 /* cloudrestApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BD50D83A2E29614F0001E4A4 /* Exceptions for "cloudrestApp" folder in "cloudrestApp" target */,
+			);
 			path = cloudrestApp;
 			sourceTree = "<group>";
 		};
