@@ -35,7 +35,7 @@ struct ContentView: View {
                         Circle()
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
-                        Text(summary != nil ? String(format: "%.1f h", summary!.averageDuration / 3600) : "—")
+                        Text(summary != nil ? String(format: "%.1f h", summary!.averageDuration / 3600) : "— —")
                             .fontWeight(.bold)
                             .foregroundColor(Color("Headings"))
                     }
@@ -52,7 +52,7 @@ struct ContentView: View {
                         Circle()
                             .frame(width: 150.0)
                             .foregroundColor(Color("SmallBackground"))
-                        Text(summary != nil ? String(format: "%.1f h", summary!.maxDuration / 3600) : "—")
+                        Text(summary != nil ? String(format: "%.1f h", summary!.maxDuration / 3600) : "— —")
                             .fontWeight(.bold)
                             .foregroundColor(Color("Headings"))
                     }
@@ -91,30 +91,20 @@ struct ContentView: View {
                             .padding(.top, 1)
                             .kerning(1.16)
                         
+                        let positiveActivities = summary?.topPositiveActivities ?? []
+                        let paddedActivities = positiveActivities + Array(repeating: "— —", count: max(0, 2 - positiveActivities.count))
                         
-                        if let summary = summary {
-                          ForEach(summary.topPositiveActivities, id: \.self) { activity in
+                        ForEach(paddedActivities.prefix(2), id: \.self) {
+                            activity in
                             ZStack {
-                              RoundedRectangle(cornerRadius: 25.0)
-                                .frame(width: 350.0, height: 40.0)
-                                .foregroundColor(Color("Buttons"))
-                              Text(activity)
-                                .font(.callout)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color("Background"))
-                                .kerning(1.12)
-                            }
-                          }
-                        } else {
-                            ZStack {
-                              RoundedRectangle(cornerRadius: 25.0)
-                                .frame(width: 350.0, height: 40.0)
-                                .foregroundColor(Color("Buttons"))
-                              Text("—")
-                                .font(.callout)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color("Background"))
-                                .kerning(1.12)
+                                RoundedRectangle(cornerRadius: 25.0)
+                                    .frame(width: 350.0, height: 40.0)
+                                    .foregroundColor(Color("Buttons"))
+                                Text(activity)
+                                    .font(.callout)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Color("Background"))
+                                    .kerning(1.12)
                             }
                         }
                         
@@ -129,7 +119,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 25.0)
                                 .frame(width: 350.0, height: 40.0)
                                 .foregroundColor(Color("Buttons"))
-                            Text(summary?.topNegativeActivity ?? "—")
+                            Text(summary?.topNegativeActivity ?? "— —")
                                 .font(.callout)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color("Background"))
