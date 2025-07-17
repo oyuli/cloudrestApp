@@ -8,5 +8,5 @@
 import SwiftUI
 
 class TabController: ObservableObject {
-    @Published var selectedTab: Tab = .log
+    @Published var selectedTab: Tab = .home
 }

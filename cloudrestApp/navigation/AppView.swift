@@ -17,7 +17,7 @@ struct AppView: View {
                 .ignoresSafeArea()
             VStack {
                 switch tabController.selectedTab {
-                    case .home: ContentView()
+                case .home: ContentView(store: sleepData)
                     case .cloud: cloud()
                     case .log: log()
                     case .music: music()
