@@ -62,7 +62,7 @@ struct music: View {
             Spacer()
         }
         .padding()
-        .background(Color(red: 10/255, green: 25/255, blue: 47/255)) // Dark blue background
+        .background(Color("Background")) // Dark blue background
         .edgesIgnoringSafeArea(.all)
     }
 }
