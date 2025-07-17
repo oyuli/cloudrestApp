@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct Music: View {
+struct music: View {
     @State private var selectedURL = "https://open.spotify.com/embed/playlist/37i9dQZF1DWUzFXarNiofw" // Default: White Noise
 
     let musicOptions: [(title: String, url: String)] = [
@@ -92,5 +92,5 @@ struct SpotifyWebView: UIViewRepresentable {
 }
 
 #Preview {
-    Music()
+    AppView()
 }
