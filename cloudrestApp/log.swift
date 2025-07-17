@@ -18,16 +18,21 @@ struct log: View {
         VStack {
             CustomDatePicker(selectedDate: $selectedDate)
                 .padding()
+                .font(.lexend(fontStyle: .title2, fontWeight: .regular))
             Text(selectedDate.formatted(date: .abbreviated, time: .omitted))
-                .foregroundStyle(Color(red: 0.851, green: 0.765, blue: 0.416))
+                .foregroundColor(Color("BrighterYellow"))
                 .padding(.bottom)
+                .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
             
             Button("log sleep") {
                 showInputSheet = true
             }
+            .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
+            .foregroundColor(Color("Buttons"))
             .sheet(isPresented: $showInputSheet) {
                 SleepInputSheet(date: selectedDate)
                     .environmentObject(sleepData)
+            
             }
         }
     }

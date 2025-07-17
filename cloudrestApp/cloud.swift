@@ -38,10 +38,11 @@ struct cloud: View {
                         Spacer()
                         
                         Text("days")
-                            .font(.system(size: 70))
-                            .fontWeight(.bold)
+                            //.font(.system(size: 70))
+                            //.fontWeight(.bold)
                             .foregroundColor(Color("BrighterYellow"))
                             .padding(.bottom, 70.0)
+                            .font(.lexend(fontStyle: .largeTitle, fontWeight: .bold))
                     }
                     
                     Image("SheepWithLegs")
