@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct cloud: View {
+    @EnvironmentObject var sleepData: SleepDataStore
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -26,7 +28,7 @@ struct cloud: View {
                         .frame(width: 350, height: 630)
                     
                     VStack {
-                        Text("00.")
+                        Text("\(sleepData.currentStreak())")
                             .font(.system(size: 115))
                             .fontWeight(.bold)
                             .foregroundColor(Color("BrighterYellow"))

@@ -145,15 +145,33 @@ class SleepDataStore: ObservableObject {
             topNegativeActivity: topNegative
         )
     }
-}
     
+    // streak
+    func currentStreak() -> Int {
+        let loggedDays = Set(entries.map { Calendar.current.startOfDay(for: $0.date) })
+        let today = Calendar.current.startOfDay(for: Date())
+        
+        var streak = 0
+        var dayToCheck = today
+        
+        while loggedDays.contains(dayToCheck) {
+            streak += 1
+            guard let previousDay = Calendar.current.date(byAdding: .day, value: -1, to: dayToCheck) else { break }
+            dayToCheck = previousDay
+        }
+        
+        return streak
+    }
+}
+
+// dates
 extension Date {
     func startOfMonth() -> Date {
         Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
     }
 }
 
-    // fix the negative sleeping times, account for going past 12 am or pm
+// fix the negative sleeping times, account for going past 12 am or pm
 private func correctedSleepDuration(for entry: SleepEntry) -> TimeInterval {
     var end = entry.sleepEnd
     if end < entry.sleepStart {
