@@ -52,8 +52,8 @@ struct breathe: View {
         let queue = DispatchQueue(label: "timerQueue")
         let timer = DispatchSource.makeTimerSource(queue: queue)
         
-        //move image up
-        withAnimation(.easeInOut(duration: 3)) {
+        //move image up 4 seconds
+        withAnimation(.easeInOut(duration: 4)) {
             imageOffset = -340
         }
         
@@ -65,8 +65,8 @@ struct breathe: View {
                 buttonText = "Hold"
             }
             
-            //image hold 2 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            //image hold 7 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
                 
                 
                 DispatchQueue.main.async {
@@ -74,7 +74,8 @@ struct breathe: View {
                     currentImage = "SheepOpen"
                 }
                 
-                withAnimation(.easeInOut(duration: 3)) {
+                //image come down
+                withAnimation(.easeInOut(duration: 8)) {
                     imageOffset = 0
                 }
             }
@@ -82,13 +83,13 @@ struct breathe: View {
         }
         
         //starts when image is up
-        timer.schedule(deadline: .now() + 3)
+        timer.schedule(deadline: .now() + 4)
         
         //activating timer
         self.timer = timer
         timer.activate()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 9) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
             buttonText = "Start"
             currentImage = "SheepClosed"
         }
