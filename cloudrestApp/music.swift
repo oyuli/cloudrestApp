@@ -8,8 +8,8 @@
 import SwiftUI
 import WebKit
 
-struct music: View {
-    @State private var selectedURL = "https://open.spotify.com/embed/playlist/37i9dQZF1DWUzFXarNiofw" // Default: white noise
+struct Music: View {
+    @State private var selectedURL = "https://open.spotify.com/embed/playlist/37i9dQZF1DWUzFXarNiofw" // Default: White Noise
 
     let musicOptions: [(title: String, url: String)] = [
         ("White Noise", "https://open.spotify.com/embed/playlist/37i9dQZF1DWUzFXarNiofw"),
@@ -22,19 +22,20 @@ struct music: View {
 
     var body: some View {
         VStack(spacing: 20) {
+            // Title
             Text("Sleep Music")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
+                .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.top)
 
-            Text("Wind down with calming sounds. Choose a vibe and press play.")
-                .font(.body)
-                .foregroundColor(.white)
+            // Subtitle
+            Text("Wind down with calming sounds.\nChoose a vibe and press play.")
+                .font(.system(size: 17, weight: .medium, design: .rounded))
+                .foregroundColor(.white.opacity(0.85))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
-            // Buttons to select music types
+            // Music Option Buttons
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
                     ForEach(musicOptions, id: \.url) { option in
@@ -42,24 +43,27 @@ struct music: View {
                             selectedURL = option.url
                         }) {
                             Text(option.title)
-                                .padding(.horizontal, 12)
+                                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                .padding(.horizontal, 14)
                                 .padding(.vertical, 8)
                                 .background(Color.white.opacity(0.15))
                                 .foregroundColor(.white)
-                                .cornerRadius(10)
+                                .cornerRadius(12)
                         }
                     }
                 }
                 .padding(.bottom, 10)
             }
 
+            // Spotify WebView
             SpotifyWebView(urlString: selectedURL)
                 .frame(height: 80)
 
             Spacer()
         }
         .padding()
-        .background(Color.black.edgesIgnoringSafeArea(.all))
+        .background(Color(red: 10/255, green: 25/255, blue: 47/255)) // Dark blue background
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -68,18 +72,18 @@ struct SpotifyWebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        loadURL(webView)
         webView.scrollView.isScrollEnabled = false
         webView.layer.cornerRadius = 12
         webView.clipsToBounds = true
+        loadURL(in: webView)
         return webView
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        loadURL(uiView)
+        loadURL(in: uiView)
     }
 
-    private func loadURL(_ webView: WKWebView) {
+    private func loadURL(in webView: WKWebView) {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             webView.load(request)
@@ -88,5 +92,5 @@ struct SpotifyWebView: UIViewRepresentable {
 }
 
 #Preview {
-    music()
+    Music()
 }
