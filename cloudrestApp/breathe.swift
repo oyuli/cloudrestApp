@@ -38,7 +38,7 @@ struct breathe: View {
                 //.fontWeight(.bold)
                 .font(.lexend(fontStyle: .title2, fontWeight: .bold))
                 .padding(.bottom, 30.0)
-                .kerning(2)
+                .kerning(1.5)
                 .transition(.opacity)
                 .animation(.easeInOut(duration: 0.5), value: buttonText)
                 
