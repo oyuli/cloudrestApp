@@ -51,4 +51,104 @@ class SleepDataStore: ObservableObject {
         let maxCount = counts.values.max() ?? 0
         return counts.filter { $0.value == maxCount }.map { $0.key}
     }
+    
+    // summary
+    struct MonthlySleepSummary {
+        let averageDuration: Double
+        let maxDuration: Double
+        let averageQuality: Int
+        let topPositiveActivities: [String]
+        let topNegativeActivity: String?
+    }
+    
+    func summarizeSleep(forMonth month: Date) -> MonthlySleepSummary? {
+        let monthStart = month.startOfMonth()
+        let monthEntries = entries.filter {
+            Calendar.current.isDate($0.date, equalTo: monthStart, toGranularity: .month)
+        }
+        guard !monthEntries.isEmpty else
+        {return nil}
+        
+        var totalDuration: TimeInterval = 0
+        var maxDuration: TimeInterval = 0
+        var totalQuality = 0
+        
+        var activityEffect: [String: [TimeInterval]] = [
+            "guidedBreathing": [],
+            "exercised": [],
+            "listenedToMusic": [],
+            "ateBeforeBed": [],
+            "scrolledDevices": [],
+            "drankCaffeine": []
+        ]
+        
+        let activityNames: [String: String] = [
+            "guidedBreathing": "guided breathing",
+            "exercised": "exercising",
+            "listenedToMusic": "listening to music",
+            "ateBeforeBed": "eating before bed",
+            "scrolledDevices": "scrolling on devices",
+            "drankCaffeine": "drinking caffeine"
+        ]
+        
+        for entry in monthEntries {
+            let duration = entry.sleepEnd.timeIntervalSince(entry.sleepStart)
+            totalDuration += duration
+            maxDuration = max(maxDuration, duration)
+            totalQuality += entry.sleepQuality
+            
+            // organize by duration
+            if entry.activities.guidedBreathing { activityEffect["guidedBreathing"]?.append(duration)}
+            if entry.activities.exercised { activityEffect["exercised"]?.append(duration)}
+            if entry.activities.listenedToMusic { activityEffect["listenedToMusic"]?.append(duration)}
+            if entry.activities.ateBeforeBed { activityEffect["ateBeforeBed"]?.append(duration)}
+            if entry.activities.scrolledDevices { activityEffect["scrolledDevices"]?.append(duration)}
+            if entry.activities.drankCaffeine { activityEffect["drankCaffeine"]?.append(duration)}
+        }
+        
+        let avgDuration = totalDuration / Double(monthEntries.count)
+        let avgQuality = totalQuality / monthEntries.count
+        
+        // rank activities
+        let positiveActivities = ["guidedBreathing", "exercised", "listenedToMusic"]
+        let negativeActivities = ["ateBeforeBed", "scrolledDevices", "drankCaffeine"]
+        
+        func average(_ values: [TimeInterval]) -> TimeInterval {
+            guard !values.isEmpty else {return 0}
+            return values.reduce(0, +) / Double(values.count)
+        }
+        
+        let topPositives = positiveActivities
+            .compactMap { activity in
+                let avg = average(activityEffect[activity] ?? [])
+                return avg > 0 ? (activity, avg) : nil
+            }
+            .sorted(by: { $0.1 < $1.1 })
+            .prefix(2)
+            .compactMap { activityNames[$0.0] }
+        
+        let topNegativeTuple = negativeActivities
+            .compactMap { activity in
+                let avg = average(activityEffect[activity] ?? [])
+                return avg > 0 ? (activity, avg) : nil
+            }
+            .sorted(by: { $0.1 < $1.1 })
+            .first
+        
+        let topNegative = topNegativeTuple.map { activityNames[$0.0] ?? $0.0 }
+        
+        return MonthlySleepSummary(
+            averageDuration: avgDuration,
+            maxDuration: maxDuration,
+            averageQuality: avgQuality,
+            topPositiveActivities: topPositives,
+            topNegativeActivity: topNegative
+        )
+    }
 }
+    
+    extension Date {
+        func startOfMonth() -> Date {
+            Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
+        }
+    }
