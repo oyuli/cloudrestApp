@@ -50,6 +50,8 @@ struct music: View {
                         .kerning(0.5)
                         .foregroundColor(Color("Buttons"))
                     Text(audioPlayer.currentTrackName)
+                        .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
+                        .kerning(0.5)
                         .foregroundColor(Color("Icons"))
                     Text("track \(audioPlayer.currentTrackNumber) of \(audioPlayer.totalTracks)")
                         .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
@@ -82,6 +84,7 @@ struct music: View {
                     Text("sleep timer")
                         .font(.lexend(fontStyle: .title3, fontWeight: .bold))
                         .foregroundColor(Color("BrighterYellow"))
+                        .padding(.top, 1)
                     HStack {
                         ForEach(timerOptions, id: \.self) { minutes in
                             Button(action: {
@@ -111,7 +114,7 @@ struct music: View {
                     }
                 }
             }
-            Spacer()
+            //Spacer()
         }
         .padding()
         .background(Color("Background"))

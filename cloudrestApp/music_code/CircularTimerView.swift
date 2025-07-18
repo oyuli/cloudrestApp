@@ -23,6 +23,6 @@ struct CircularTimerView: View {
                 .font(.lexend(fontStyle: .title, fontWeight: .bold))
                 .foregroundColor(Color("BrighterYellow"))
         }
-        .frame(width: 200, height: 200)
+        .frame(width: 140, height: 140)
     }
 }
