@@ -14,7 +14,7 @@
 		534E6B112E2959FA003043F8 /* Exceptions for "cloudrestApp" folder in "cloudrestApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				font/Info.plist,
+				Info.plist,
 			);
 			target = BD50D6AC2E26A4240001E4A4 /* cloudrestApp */;
 		};
