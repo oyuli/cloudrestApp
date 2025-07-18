@@ -112,7 +112,7 @@ struct ContentView: View {
                                     .frame(width: 350.0, height: 40.0)
                                     .foregroundColor(Color("Buttons"))
                                 Text(activity)
-                                    .font(.lexend(fontStyle: .headline, fontWeight: .bold))
+                                    .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
                                     .foregroundColor(Color("Background"))
                                     .kerning(0.5)
                             }
@@ -131,7 +131,7 @@ struct ContentView: View {
                                 .frame(width: 350.0, height: 40.0)
                                 .foregroundColor(Color("Buttons"))
                             Text(summary?.topNegativeActivity ?? "—")
-                                .font(.lexend(fontStyle: .headline, fontWeight: .bold))
+                                .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
                                 .foregroundColor(Color("Background"))
                                 .kerning(0.5)
                         }

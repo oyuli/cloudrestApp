@@ -60,7 +60,7 @@ struct CustomDatePicker: View {
                                             
                                         Text("\(value.day)")
                                             .foregroundStyle(isToday(date: value.date) ? Color(red: 0.851, green: 0.765, blue: 0.416) : Color(red: 0.765, green: 0.780, blue: 0.867))
-                                            .font(.lexend(fontStyle: .title3, fontWeight: .bold))
+                                            .font(.lexend(fontStyle: .title3, fontWeight: .semibold))
                                     }
                                     .frame(width: 30, height: 30)
                                 }
