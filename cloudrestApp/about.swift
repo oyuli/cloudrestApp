@@ -6,18 +6,19 @@ struct about: View {
       Color("Background")
         .ignoresSafeArea()
         
-      VStack(alignment: .leading, spacing: 15.0) {
+      VStack(alignment: .leading, spacing: 20.0) {
         Text("cloudrest")
           //.font(.title)
           //.fontWeight(.bold)
           .foregroundColor(Color("Icons"))
           .font(.lexend(fontStyle: .title, fontWeight: .bold))
+          .kerning(0.75)
           
-        Text("Sleep health is universal but overlooked ")
+        Text("sleep health is universal but overlooked ")
           .foregroundColor(Color("BrighterYellow"))
           //.font(.title3)
           //.fontWeight(.bold)
-          .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
+          .font(.lexend(fontStyle: .headline, fontWeight: .bold))
           .padding(.bottom, 2.0)
           
         HStack {
@@ -28,15 +29,16 @@ struct about: View {
                   .foregroundColor(Color("SmallBackground"))
             Text("73%")
               //.fontWeight(.bold)
-              .foregroundColor(Color("Headings"))
-              .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
+              .foregroundColor(Color("BrighterYellow"))
+              .font(.lexend(fontStyle: .title2, fontWeight: .bold))
+              .kerning(0.5)
           }
           Text("of adolescents\nare not sufficiently resting")
             //.font(.headline)
             //.fontWeight(.heavy)
             .padding(.leading, 10)
-            .foregroundColor(Color("Icons"))
-            .kerning(1.25)
+            .foregroundColor(Color("Buttons"))
+            .kerning(0.5)
             .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
             
         }
@@ -48,15 +50,16 @@ struct about: View {
                   .foregroundColor(Color("SmallBackground"))
             Text("33%")
               //.fontWeight(.bold)
-              .foregroundColor(Color("Headings"))
-              .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
+              .foregroundColor(Color("BrighterYellow"))
+              .font(.lexend(fontStyle: .title2, fontWeight: .bold))
+              .kerning(0.5)
           }
           Text("of adults sleep <7 hrs daily")
             //.font(.headline)
             //.fontWeight(.heavy)
             .padding(.leading, 10)
-            .foregroundColor(Color("Icons"))
-            .kerning(1.25)
+            .foregroundColor(Color("Buttons"))
+            .kerning(0.5)
             .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
         }
         HStack {
@@ -67,16 +70,17 @@ struct about: View {
                   .foregroundColor(Color("SmallBackground"))
             Text("75%")
               //.fontWeight(.bold)
-              .foregroundColor(Color("Headings"))
-              .font(.lexend(fontStyle: .title2, fontWeight: .semibold))
+              .foregroundColor(Color("BrighterYellow"))
+              .font(.lexend(fontStyle: .title2, fontWeight: .bold))
+              .kerning(0.5)
           }
         
-          Text("of older adults exhibit symptoms\nof insomnia")
+          Text("of older adults exhibit symptoms of insomnia")
             //.font(.headline)
             //.fontWeight(.heavy)
             .padding(.leading, 10)
-            .foregroundColor(Color("Icons"))
-            .kerning(1.25)
+            .foregroundColor(Color("Buttons"))
+            .kerning(0.5)
             .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
         }
         
@@ -86,16 +90,16 @@ struct about: View {
               //.font(.title3)
               //.fontWeight(.bold)
               .padding(.top, 7)
-              .kerning(1.5)
+              .kerning(0.5)
               //.lineLimit(5)
               .font(.lexend(fontStyle: .body, fontWeight: .semibold))
               
             Text("our solution")
-              .foregroundColor(Color("Headings"))
+              .foregroundColor(Color("BrighterYellow"))
               //.font(.title3)
               //.fontWeight(.bold)
               .padding(.top, 1)
-              .kerning(1.16)
+              .kerning(0.5)
               .font(.lexend(fontStyle: .title3, fontWeight: .bold))
           
             ZStack {
@@ -106,7 +110,7 @@ struct about: View {
                   //.font(.callout)
                   //.fontWeight(.semibold)
                   .foregroundColor(Color("Background"))
-                  .kerning(1.12)
+                  .kerning(0.5)
                   .font(.lexend(fontStyle: .body, fontWeight: .semibold))
                   //.alignmentGuide(.center) { $0 }
             }
@@ -118,7 +122,7 @@ struct about: View {
                 //.font(.callout)
                 //.fontWeight(.semibold)
                 .foregroundColor(Color("Background"))
-                .kerning(1.13)
+                .kerning(0.5)
                 .font(.lexend(fontStyle: .body, fontWeight: .semibold))
             }
           

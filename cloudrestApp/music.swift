@@ -83,7 +83,7 @@ struct music: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color("SmallBackground").opacity(0.2))
+        .background(Color("Buttons").opacity(0.2))
         .cornerRadius(20)
       }
       // Sleep Timer Section
