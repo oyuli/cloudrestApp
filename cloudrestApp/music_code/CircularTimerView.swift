@@ -13,16 +13,16 @@ struct CircularTimerView: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(Color.gray.opacity(0.3), lineWidth: 10)
+                .stroke(Color("BrighterYellow"))
             Circle()
                 .trim(from: 0.0, to: progress)
-                .stroke(Color("BrighterYellow"), style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                .stroke(Color("BrighterYellow"), style: StrokeStyle(lineWidth: 7, lineCap: .round))
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 0.2), value: progress)
             Text(timeRemaining)
                 .font(.lexend(fontStyle: .title, fontWeight: .bold))
                 .foregroundColor(Color("BrighterYellow"))
         }
-        .frame(width: 200, height: 200)
+        .frame(width: 150, height: 150)
     }
 }
