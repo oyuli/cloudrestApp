@@ -15,6 +15,7 @@ class PlaylistAudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     private var sleepTimer: Timer?
     private var countdownTimer: Timer?
     private var timeRemainingInSeconds: Int = 0
+    private var totalTimerDuration: Int = 0
     
     @Published var isPlaying = false
     @Published var isPaused = false
@@ -22,6 +23,8 @@ class PlaylistAudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var currentTrackNumber: Int = 0
     @Published var totalTracks: Int = 0
     @Published var timeRemainingDisplay: String = ""
+    @Published var timerProgress: Double = 1.0
+    
     
     func loadPlaylist(for category: String) {
         let allFiles = Bundle.main.paths(forResourcesOfType: "mp3", inDirectory: nil)
@@ -84,27 +87,29 @@ class PlaylistAudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     func startSleepTimer(minutes: Int) {
         cancelSleepTimer()
-        timeRemainingInSeconds = minutes * 60
+        totalTimerDuration = minutes * 60
+        timeRemainingInSeconds = totalTimerDuration
         updateTimeRemainingDisplay()
-        sleepTimer = Timer.scheduledTimer(withTimeInterval: Double(minutes * 60), repeats: false) { _ in
+        sleepTimer = Timer.scheduledTimer(withTimeInterval: Double(timeRemainingInSeconds), repeats: false) { _ in
             self.stop()
         }
-        
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.timeRemainingInSeconds -= 1
             self.updateTimeRemainingDisplay()
-            
+            self.timerProgress = Double(self.timeRemainingInSeconds) / Double(self.totalTimerDuration)
             if self.timeRemainingInSeconds <= 0 {
                 self.countdownTimer?.invalidate()
             }
         }
+        timerProgress = 1.0
     }
     
     func updateTimeRemainingDisplay() {
-        let minutes = timeRemainingInSeconds / 60
+        let hours = timeRemainingInSeconds / 3600
+        let minutes = (timeRemainingInSeconds % 3600) / 60
         let seconds = timeRemainingInSeconds % 60
         DispatchQueue.main.async {
-            self.timeRemainingDisplay = String(format: "%02d:%02d", minutes, seconds)
+            self.timeRemainingDisplay = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         }
     }
     
