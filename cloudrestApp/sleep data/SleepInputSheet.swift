@@ -10,7 +10,7 @@ import Foundation
 
  
  struct SleepInputSheet: View {
-     @EnvironmentObject var sleepData: SleepDataStore
+    @EnvironmentObject var sleepData: SleepDataStore
     @Environment(\.dismiss) var dismiss
     
     let date: Date
@@ -33,6 +33,9 @@ import Foundation
                      DatePicker("woke up", selection: $sleepEnd, displayedComponents: .hourAndMinute)
                      Stepper("sleep quality: \(sleepQuality) / 5", value: $sleepQuality, in: 1...5)
                  }
+                 .foregroundColor(Color("BrighterYellow"))
+                 .kerning(0.5)
+                 .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
                  
                  Section(header: Text("did you...?")) {
                      Toggle("guided breathing", isOn: $guidedBreathing)
@@ -42,9 +45,15 @@ import Foundation
                      Toggle("scroll on devices", isOn: $scrolledDevices)
                      Toggle("drank caffeine", isOn: $drankCaffeine)
                  }
+                 .foregroundColor(Color("Buttons"))
+                 .kerning(0.5)
+                 .font(.lexend(fontStyle: .headline, fontWeight: .semibold))
              }
              
              .navigationTitle(date.formatted(date: .abbreviated, time: .omitted))
+                .foregroundColor(Color("Icons"))
+                .kerning(0.5)
+                .font(.lexend(fontStyle: .title, fontWeight: .bold))
              .toolbar {
                  ToolbarItem(placement: .confirmationAction) {
                      Button("submit") {
